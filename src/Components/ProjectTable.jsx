@@ -7,8 +7,45 @@ export default function ProjectTable() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-    setProjects(storedProjects);
+    // Sample Data
+    const sampleProjects = [
+      {
+        id: 1,
+        clientName: "ABC Corp",
+        projectName: "Website Redesign",
+        projectType: "Web Development",
+        status: "Ongoing",
+      },
+      {
+        id: 2,
+        clientName: "XYZ Ltd",
+        projectName: "Mobile App",
+        projectType: "App Development",
+        status: "Completed",
+      },
+      {
+        id: 3,
+        clientName: "LMN Pvt",
+        projectName: "E-commerce Store",
+        projectType: "E-commerce",
+        status: "On Hold",
+      },
+      {
+        id: 4,
+        clientName: "PQR Inc",
+        projectName: "Logo Design",
+        projectType: "Graphic Design",
+        status: "Ongoing",
+      },
+    ];
+
+    const storedProjects = JSON.parse(localStorage.getItem("projects"));
+    if (!storedProjects || storedProjects.length === 0) {
+      localStorage.setItem("projects", JSON.stringify(sampleProjects));
+      setProjects(sampleProjects);
+    } else {
+      setProjects(storedProjects);
+    }
   }, []);
 
   const handleDelete = (id) => {
